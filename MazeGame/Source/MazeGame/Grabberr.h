@@ -25,6 +25,6 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(EditAnywhere)
-	float Reach = 100.f;
+	float Reach = 1000.f;
 		
 };

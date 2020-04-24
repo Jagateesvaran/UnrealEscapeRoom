@@ -53,10 +53,31 @@ void UGrabberr::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	DrawDebugLine(
 		GetWorld(), PlayerViewPointLocation, LineTraceEnd, 
 		FColor(0,255,0), false, 0.f, 0, 10.f);
-	
 
 
 	// Ray-Casting out to a certain distance (Reach)
+	FHitResult hit;
+	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());  // rule for what i going to hit and ignore myself becuase the ray i starting form inside me
+
+	GetWorld()->LineTraceSingleByObjectType(
+		OUT hit,
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), // type we can hit with
+		TraceParams
+		);
+
+	AActor* ActorHit = hit.GetActor();
+
+	if (ActorHit) // check if got hit
+	{
+		UE_LOG(LogTemp, Error, TEXT("Line Trace has hit : %s"), *(ActorHit->GetName()));
+	}
+
+
+	// Logging out to test
+
+	// seee what it hits
 
 	
 }
