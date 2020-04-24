@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabberr.generated.h"
 
 
@@ -26,5 +27,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float Reach = 1000.f;
+
+	UPhysicsHandleComponent* PhysicsHandle = nullptr; 
+
+
 		
 };
