@@ -17,6 +17,16 @@ UGrabberr::UGrabberr()
 	// ...
 }
 
+void UGrabberr::Grab() 
+{
+	UE_LOG(LogTemp, Error, TEXT("Grabber working"));
+}
+
+void UGrabberr::Release()
+{
+	UE_LOG(LogTemp, Error, TEXT("Grabber Realease working"));
+}
+
 
 // Called when the game starts
 void UGrabberr::BeginPlay()
@@ -37,6 +47,21 @@ void UGrabberr::BeginPlay()
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("UPhysicsHandleComponent DOES NOT HAVE IT"));
+	}
+
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+
+
+	if (InputComponent) // to protect from crash
+	{
+		UE_LOG(LogTemp, Error, TEXT("InputComponent Found on %s"), *GetOwner()->GetName());
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabberr::Grab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabberr::Release);
+
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("InputComponent not found on %s"), *GetOwner()->GetName());
 	}
 	
 }
