@@ -17,14 +17,14 @@ public:
 	// Sets default values for this component's properties
 	UGrabberr();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+	
 
 private:
 	UPROPERTY(EditAnywhere)
@@ -35,6 +35,7 @@ private:
 
 	void Grab();
 	void Release();
-
-		
+	void FindPhysicsHandle();
+	void FindInputComponent();
+	FHitResult GetFirstPhsyicsBodyInReach() const;
 };
